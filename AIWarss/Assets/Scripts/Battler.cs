@@ -15,7 +15,7 @@ public class Battler : SteeringBehaviour {
     void Start () {
         maxSpeed = 3;
         turnSpeed = 0.2f;
-        rb3d = this.GetComponent<Rigidbody>();
+        rb3d = this.GetComponentInParent<Rigidbody>();
         
 
 	
