@@ -1,0 +1,23 @@
+﻿<atlas>
+  <image>
+    <name>player</name>
+    <x>86</x>
+    <y>86</y>
+    <width>75</width>
+    <height>70</height>
+  </image>
+  <image>
+  <player>enemy</player>
+    <x>170</x>
+    <y>86</y>
+    <width>75</width>
+    <height>70</height>
+  </image>
+  <image>
+    <name>motherShip</name>
+    <x>20</x>
+    <y>21</y>
+    <width>18</width>
+    <height>15</height>
+  </image>
+</atlas>
