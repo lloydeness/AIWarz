@@ -20,7 +20,17 @@ public class MissileLauncher : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if(shotDelay<=0)
+        if (targets.Count > 0)
+        {
+
+            if (targets[0].gameObject.activeSelf == false)
+            {
+
+
+                targets.Remove(targets[0]);
+            }
+        }
+        if (shotDelay<=0)
 		{
 			if( targets.Count>0)
 			{

@@ -3,18 +3,19 @@ using System.Collections;
 
 public class Battler : SteeringBehaviour {
 
-    public Rigidbody  rb3d;
+    private Rigidbody  rb3d;
     public Sensor sensor;
     public Sensor Lsensor;
     public Sensor Rsensor;
     public Rigidbody Enemy;
-    private bool isColliding = false;
+   
 
 
     // Use this for initialization
     void Start () {
         maxSpeed = 3;
         turnSpeed = 0.2f;
+        rb3d = this.GetComponent<Rigidbody>();
         
 
 	
@@ -22,17 +23,18 @@ public class Battler : SteeringBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
 
     }
 
     void FixedUpdate()
     {
 
+
         
-        Wander();
-        //AvoidHullCollisions(0.5f);
-        if (isColliding == false)
+
+        if (Lsensor.isColliding == false && Rsensor.isColliding == false)
+
         {
             if (sensor.targets.Count > 0)
             {
@@ -51,11 +53,16 @@ public class Battler : SteeringBehaviour {
 
             }
         }
-        else
+        if (Lsensor.isColliding == true || Rsensor.isColliding == true)
         {
             AdvancedCollisions(Lsensor, Rsensor);
         }
-        
+
+
+        if (Lsensor.isColliding == false && Rsensor.isColliding == false && sensor.targets.Count == 0)
+        {
+            Wander();
+        }
         ApplySteering();
         Reset();
 
@@ -70,22 +77,6 @@ public class Battler : SteeringBehaviour {
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == ("Player"))
-            {
-            isColliding = true;
-            }
 
-    }
-
-    void OnTriggerxit(Collider other)
-    {
-        if (other.tag == ("Player"))
-        {
-            isColliding = false;
-        }
-
-    }
 
 }
