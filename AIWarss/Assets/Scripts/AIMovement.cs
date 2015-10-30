@@ -51,7 +51,7 @@ public class AIMovement : MonoBehaviour
             tempRot = Quaternion.Euler(rot);
 
 
-            something.transform.rotation = Quaternion.Slerp(something.transform.rotation,tempRot, Time.deltaTime * 8);
+            something.transform.rotation = Quaternion.Slerp(something.transform.rotation,tempRot, Time.deltaTime * 6);
 
 
         }

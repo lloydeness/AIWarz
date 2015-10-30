@@ -20,6 +20,10 @@ public class Rocket : MonoBehaviour
         if (other != ignoreCollider)
         {
             PoolManager.Instance.PoolObject(gameObject);
+            if (other.tag == ("Player"))
+            {
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }

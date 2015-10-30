@@ -21,19 +21,30 @@ public class GaussCannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shotDelay <= 0)
+
+        if (targets.Count > 0)
         {
+
             if (targets[0].gameObject.activeSelf == false)
-                {
+            {
+
 
                 targets.Remove(targets[0]);
             }
+        }
+
+        if (shotDelay <= 0)
+        {
+  
             if (targets.Count > 0)
             {
+
+              
+
                 GameObject bullet = PoolManager.Instance.GetObjectForType("Bullet", false);
                 Bullet script = bullet.GetComponent<Bullet>();
                 script.ignoreCollider = EquippedTo.GetComponent<Collider>();
-                bullet.GetComponent<Rigidbody>().velocity = /*EquippedTo.velocity +*/ ((targets[0].position - transform.position).normalized * speed);
+                bullet.GetComponent<Rigidbody>().velocity = EquippedTo.velocity + ((targets[0].position - transform.position).normalized * speed);
                 bullet.transform.position = transform.position;
                 shotDelay = 1 / rateOfFire;
             }
