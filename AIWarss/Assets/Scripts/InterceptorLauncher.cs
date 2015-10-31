@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class InterceptorLauncher : MonoBehaviour {
-
     public float speed = 2f;
     public float turningSpeed = 50f;
     public float rateOfFire = 2f;
-    public List<Rigidbody> Equipped;
+    public Rigidbody EquippedTo;
 
     private List<Transform> targets;
     private float shotDelay = 0f;
@@ -34,16 +33,15 @@ public class InterceptorLauncher : MonoBehaviour {
         {
             if (targets.Count > 0)
             {
-               
-                    GameObject missile = PoolManager.Instance.GetObjectForType("Interceptor", false);
-                    Interceptor script = missile.GetComponent<Interceptor>();
-                    script.speed = speed;
-                    script.turningSpeed = turningSpeed;                  
-                    script.target = targets[0];
-                    missile.transform.rotation = Quaternion.LookRotation(targets[0].position - transform.position);
-                    missile.transform.position = transform.position;
-                    shotDelay = 1 / rateOfFire;
-                
+                GameObject missile = PoolManager.Instance.GetObjectForType("Interceptor", false);
+                SmartMissile script = missile.GetComponent<SmartMissile>();
+                script.speed = speed;
+                script.turningSpeed = turningSpeed;
+                script.ignoreCollider = EquippedTo.GetComponent<Collider>();
+                script.target = targets[0];
+                missile.transform.rotation = Quaternion.LookRotation(targets[0].position - transform.position);
+                missile.transform.position = transform.position;
+                shotDelay = 1 / rateOfFire;
             }
         }
         else
@@ -54,23 +52,17 @@ public class InterceptorLauncher : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < Equipped.Count; i++)
+        if (other != EquippedTo.GetComponent<Collider>())
         {
-            if (other != Equipped[i].GetComponent<Collider>())
-            {
-                targets.Remove(other.transform);
-            }
+            targets.Add(other.transform);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i < Equipped.Count; i++)
+        if (other != EquippedTo.GetComponent<Collider>())
         {
-            if (other != Equipped[i].GetComponent<Collider>())
-            {
-                targets.Remove(other.transform);
-            }
+            targets.Remove(other.transform);
         }
     }
 }

@@ -20,6 +20,14 @@ public class Interceptor : MonoBehaviour {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turningSpeed * Time.deltaTime);
         // Move forward
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+
+        if (GetComponent<Rigidbody>().rotation.x != 90f)
+        {
+            Vector3 rot = GetComponent<Rigidbody>().rotation.eulerAngles;
+            rot = new Vector3(0, rot.y, rot.z);
+            GetComponent<Rigidbody>().rotation = Quaternion.Euler(rot);
+        }
+
     }
 
     void OnTriggerEnter(Collider other)
