@@ -6,7 +6,7 @@ public class GauseIntercept : MonoBehaviour {
 
     public float speed = 10f;
     public float rateOfFire = 1f;
-    public List<Rigidbody> Equipped;
+    public Rigidbody Equipped;
 
     private List<Transform> targets;
     private float shotDelay = 0f;
@@ -41,7 +41,7 @@ public class GauseIntercept : MonoBehaviour {
               
                     GameObject bullet = PoolManager.Instance.GetObjectForType("Bullet", false);
                     Bullet script = bullet.GetComponent<Bullet>();
-                    //script.ignoreCollider = Equipped[i].GetComponent<Collider>();
+                    script.ignoreCollider = Equipped.GetComponent<Collider>();
                     bullet.GetComponent<Rigidbody>().velocity = /*Equipped[i].velocity +*/ ((targets[0].position - transform.position).normalized * speed);
                     bullet.transform.position = transform.position;
                     shotDelay = 1 / rateOfFire;
@@ -57,23 +57,24 @@ public class GauseIntercept : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        for (int i = 0; i < Equipped.Count; i++)
-        {
-            if (other != Equipped[i].GetComponent<Collider>())
+     
+            if (other.tag != ("Carrier"))
             {
-                targets.Add(other.transform);
+                if (other != Equipped.GetComponent<Collider>())
+                {
+                    targets.Add(other.transform);
+                }
             }
-        }
+        
     }
 
     void OnTriggerExit(Collider other)
     {
-        for (int i = 0; i < Equipped.Count; i++)
-        {
-            if (other != Equipped[i].GetComponent<Collider>())
+        
+            if (other != Equipped.GetComponent<Collider>())
             {
                 targets.Remove(other.transform);
             }
-        }
+        
     }
 }

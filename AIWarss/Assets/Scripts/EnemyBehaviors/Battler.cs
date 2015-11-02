@@ -7,7 +7,9 @@ public class Battler : SteeringBehaviour {
     public Sensor sensor;
     public Sensor Lsensor;
     public Sensor Rsensor;
+    public Sensor hitSensor;
     public Rigidbody Enemy;
+    public int hitPoints = 1000;
    
 
 
@@ -23,14 +25,25 @@ public class Battler : SteeringBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        int alive = 0;
+        if (hitSensor.isColliding == true)
+        {
+            alive = hitPoints - hitSensor.targets.Count;
 
+        }
+
+        if (alive < 0)
+        {
+            rb3d.gameObject.SetActive(false);
+
+        }
 
     }
 
     void FixedUpdate()
     {
-
-
+      
+        
         
 
         if (Lsensor.isColliding == false && Rsensor.isColliding == false)

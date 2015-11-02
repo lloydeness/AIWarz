@@ -34,7 +34,7 @@ public class MissileLauncher : MonoBehaviour
 		{
 			if( targets.Count>0)
 			{
-				GameObject missile = PoolManager.Instance.GetObjectForType("Interceptor",false);
+				GameObject missile = PoolManager.Instance.GetObjectForType("SmartMissle",false);
 				SmartMissile script = missile.GetComponent<SmartMissile>();
 				script.speed = speed;
 				script.turningSpeed = turningSpeed;

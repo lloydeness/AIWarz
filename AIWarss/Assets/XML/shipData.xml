@@ -20,4 +20,12 @@
     <width>18</width>
     <height>15</height>
   </image>
+   <image>
+
+	<name>worker</name>
+	<x>44</x>
+	<y>349</y>
+	<width>37</width>
+	<height>31</height>
+	</image>
 </atlas>

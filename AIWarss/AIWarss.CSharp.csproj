@@ -69,21 +69,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AIMovement.cs" />
-    <Compile Include="Assets\Scripts\Battler.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\GauseIntercept.cs" />
-    <Compile Include="Assets\Scripts\GaussCannon.cs" />
-    <Compile Include="Assets\Scripts\Interceptor.cs" />
-    <Compile Include="Assets\Scripts\InterceptorLauncher.cs" />
-    <Compile Include="Assets\Scripts\MissileLauncher.cs" />
+    <Compile Include="Assets\Scripts\EnemyBehaviors\Battler.cs" />
+    <Compile Include="Assets\Scripts\EnemyBehaviors\Carrier.cs" />
+    <Compile Include="Assets\Scripts\MirrorWarp.cs" />
     <Compile Include="Assets\Scripts\PoolManager.cs" />
-    <Compile Include="Assets\Scripts\Rocket.cs" />
-    <Compile Include="Assets\Scripts\RocketLauncher.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Interceptor.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Rocket.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\SmartMissile.cs" />
     <Compile Include="Assets\Scripts\Sensor.cs" />
-    <Compile Include="Assets\Scripts\SmartMissile.cs" />
     <Compile Include="Assets\Scripts\Sprite.cs" />
     <Compile Include="Assets\Scripts\SteeringBehaviour.cs" />
     <Compile Include="Assets\Scripts\TextureManager.cs" />
+    <Compile Include="Assets\Scripts\Weaopns\GauseIntercept.cs" />
+    <Compile Include="Assets\Scripts\Weaopns\GaussCannon.cs" />
+    <Compile Include="Assets\Scripts\Weaopns\InterceptorLauncher.cs" />
+    <Compile Include="Assets\Scripts\Weaopns\MissileLauncher.cs" />
+    <Compile Include="Assets\Scripts\Weaopns\RocketLauncher.cs" />
     <Compile Include="Assets\Scripts\WorkerBee.cs" />
   </ItemGroup>
   <ItemGroup>
