@@ -11,9 +11,10 @@ public class WorkerBee : SteeringBehaviour
     public Sensor Lsensor;
     public Sensor Rsensor;
     public Sensor hitSensor;
-    private Vector3 mineralPatch = new Vector3(0f,0f,0f);
-    private Vector3 Base = new Vector3(0f, 0f, 0f);
+    public Vector3 mineralPatch { get; set; }
+    public Vector3 Base { get; set; }
     private float timeStamp = 0;
+
 
 
 
@@ -57,71 +58,61 @@ public class WorkerBee : SteeringBehaviour
     void FixedUpdate()
     {
 
-
-
-        if (SeekSensor.isColliding == true)
-        {
-            
-
-            if (hasMineral == false)
-            {
-                
-                for (int i = 0; i < SeekSensor.targets.Count; i++)
-                {
-                    if (SeekSensor.targets[i].tag == ("Mineral"))
-                    {
-                        
-                        Seek(SeekSensor.targets[i].transform.position, 0);
-                        break;
-                    }
-                }
-
-            }
-            else
-            {
-
-                for (int i = 0; i < SeekSensor.targets.Count; i++)
-                {
-                    if (SeekSensor.targets[i].tag == ("Base"))
-                    {
-                        Seek(SeekSensor.targets[i].transform.position, 0);
-                        break;
-                    }
-                }
-
-
-            }
-
-
-        }
-
-        /*
-        if (Lsensor.isColliding == false && Rsensor.isColliding == false)
-
-        {
-            if (sensor.targets.Count > 0)
-            {
-
-                if (sensor.targets[0].gameObject.activeSelf == false)
-                {
-
-
-                    sensor.targets.Remove(sensor.targets[0]);
-                }
-                else
-                {
-                    Seek(sensor.targets[0].transform.position, 0);
-
-                }
-
-            }
-        }
+    
 
         if (Lsensor.isColliding == true || Rsensor.isColliding == true)
         {
             AdvancedCollisions(Lsensor, Rsensor);
         }
-        */
+        else
+        {
+
+            if (SeekSensor.isColliding == true)
+            {
+
+
+                if (hasMineral == false)
+                {
+
+                    /*
+                    for (int i = 0; i < SeekSensor.targets.Count; i++)
+                    {
+                        if (SeekSensor.targets[i].tag == ("Mineral"))
+                        {
+
+                            Seek(SeekSensor.targets[i].transform.position, 0);
+                            break;
+                        }
+                    }
+                    */
+                    Seek(mineralPatch, 0);
+
+                }
+                else
+                {
+                    /*
+                    for (int i = 0; i < SeekSensor.targets.Count; i++)
+                    {
+                        if (SeekSensor.targets[i].tag == ("Base"))
+                        {
+                            Seek(SeekSensor.targets[i].transform.position, 0);
+                            break;
+                        }
+                    }
+                    */
+                    Seek(Base, 0);
+
+                }
+
+
+            }
+
+        }
+      
+
+
+
+     
 
         if (collecting == true)
         {
@@ -149,7 +140,7 @@ public class WorkerBee : SteeringBehaviour
     {
         if (target.gameObject.tag == ("Base"))
             {
-            hasMineral = false;
+                hasMineral = false;
             }
 
         if (target.gameObject.tag == ("Mineral"))
@@ -157,6 +148,7 @@ public class WorkerBee : SteeringBehaviour
             hasMineral = true;
             collecting = true;
             timeStamp = Time.time;
+            rb3d.velocity = new Vector3(0,0,0);
         }
 
     }
@@ -166,6 +158,7 @@ public class WorkerBee : SteeringBehaviour
         if (Time.time > timeStamp + 5)
         {
             collecting = false;
+           
 
         }
 
